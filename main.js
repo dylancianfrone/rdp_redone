@@ -22,7 +22,9 @@ function onYouTubeIframeAPIReady(){
 		width:'640',
 		videoId:'XIMLoLxmTDw',
 		playerVars:{
-			'playsinline':1
+			'playsinline':1,
+			'controls':0,
+			'modestbranding':1
 		}
 		,
 		events: {

@@ -5,10 +5,10 @@ firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
 var player;
 
-var gods_menu = {"LhwQ5_NO2v0", 43, 82};
-var loser_lover = {"QMxqHzdjv0c", 39, 78};
-var after_school = {"7t9CHqg59h8", 35, 64};
-var asap = {"ljLn5QFnGyQ", 36, 72};
+var gods_menu = ["LhwQ5_NO2v0", 43, 82];
+var loser_lover = ["QMxqHzdjv0c", 39, 78];
+var after_school = ["7t9CHqg59h8", 35, 64];
+var asap = ["ljLn5QFnGyQ", 36, 72];
 
 var videos = [gods_menu, loser_lover, after_school, asap];
 var index = 0;

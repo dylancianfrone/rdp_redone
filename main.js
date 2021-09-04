@@ -5,19 +5,17 @@ firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
 var player;
 
-var videos = ['LhwQ5_NO2v0', 'ltf17T91_eM'];
+var gods_menu = {"LhwQ5_NO2v0", 43, 82};
+var loser_lover = {"QMxqHzdjv0c", 39, 78};
+var after_school = {"7t9CHqg59h8", 35, 64};
+var asap = {"ljLn5QFnGyQ", 36, 72};
+
+var videos = [gods_menu, loser_lover, after_school, asap];
 var index = 0;
 
 function onYouTubeIframeAPIReady(){
 	player = new YT.Player('player', {
-		height:'390',
-		width:'640',
-		videoId:'LhwQ5_NO2v0',
-		playerVars:{
-			'playsinline':1
-		}
-	,
-	events: {
+		events: {
 		'onReady': onPlayerReady,
 		'onStateChange': onPlayerStateChange
 		}
@@ -32,12 +30,13 @@ function onPlayerReady(event){
 
 function onPlayerStateChange(event){
 	if(event.data == YT.PlayerState.PLAYING && !done){
-		setTimeout(stopVideo, 6000);
+		setTimeout(loadNextVideo, videos[index][2]-videos[index][1]);
 		done = true;
 	}
 }
 
 function loadNextVideo(){
 	index += 1;
-	player.loadVideoById(videos[index]);
+	player.loadVideoById(videos[index][0]);
+	done = false;
 }

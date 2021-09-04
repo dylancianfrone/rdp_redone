@@ -24,7 +24,7 @@ function onYouTubeIframeAPIReady(){
 		videoId:'XIMLoLxmTDw',
 		playerVars:{
 			'playsinline':1,
-			'controls':1,
+			'controls':0,
 			'modestbranding':1
 		}
 		,

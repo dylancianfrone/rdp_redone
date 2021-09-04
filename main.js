@@ -52,3 +52,16 @@ function loadNextVideo(){
 	player.loadVideoById(videos[index][0], videos[index][1]);
 	done = false;
 }
+
+function start(){
+
+  fetch('data.json').then(response => {
+    return response.json();
+  }).then(data => {
+    console.log(data);
+  }).catch(err => {
+    console.log("ERROR")
+  });
+
+}
+start();

@@ -16,7 +16,6 @@ var index = 0
 var done = false;
 songs = [blank_video]
 
-
 function onYouTubeIframeAPIReady(){
 	fetchSongData();
 	player = new YT.Player('player', {
@@ -25,7 +24,7 @@ function onYouTubeIframeAPIReady(){
 		videoId:'XIMLoLxmTDw',
 		playerVars:{
 			'playsinline':1,
-			'controls':0,
+			'controls':1,
 			'modestbranding':1
 		}
 		,
@@ -43,7 +42,10 @@ function onPlayerReady(event){
 }
 
 function onPlayerStateChange(event){
-	if(event.data == YT.PlayerState.PLAYING && !done){
+	if(event.data == YT.PlayerState.ENDED){
+		loadNextVideo();
+	}
+	if(event.data == YT.PlayerState.PLAYING && index == 0){
 		setTimeout(loadNextVideo, 1000*(songs[index]['end']-songs[index]['start']));
 		done = true;
 	}
@@ -52,7 +54,8 @@ function onPlayerStateChange(event){
 function loadNextVideo(){
 	console.log("Loading song "+index)
 	index += 1;
-	player.loadVideoById(songs[index]['id'], songs[index]['start']);
+	play = {'videoId': songs[index]['id'], 'startSeconds': songs[index]['start'], 'endSeconds': songs[index]['end']};
+	player.loadVideoById(play);
 	done = false;
 }
 

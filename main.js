@@ -15,6 +15,13 @@ var index = 0;
 
 function onYouTubeIframeAPIReady(){
 	player = new YT.Player('player', {
+		height:'390',
+		width:'640',
+		videoId:'LhwQ5_NO2v0',
+		playerVars:{
+			'playsinline':1
+		}
+		,
 		events: {
 		'onReady': onPlayerReady,
 		'onStateChange': onPlayerStateChange

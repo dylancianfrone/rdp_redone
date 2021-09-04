@@ -60,9 +60,20 @@ async function fetchSongData(){
   fetch('data.json').then(response => {
     return response.json();
   }).then(data => {
-		songs = songs.concat(data['songs']);
+		songs = songs.concat(shuffle(data['songs']));
     console.log(data);
   }).catch(err => {
     console.log("ERROR")
   });
+}
+
+//Durstenfeld shuffle
+function shuffle(data){
+	for(var i=data.length-1;i>0;i--){
+		var x = Math.floor(Math.random() * (i+1));
+		var temp = data[i];
+		data[i] = data[x];
+		data[x] = temp;
+	}
+	return data;
 }

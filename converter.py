@@ -6,10 +6,27 @@ import string
 
 def main():
     args = sys.argv[1:]
-    if len(args) != 2:
+    names = []
+    if len(args) > 2:
         print("Incorrect number of arguments.\nCorrect usage: python converter.py [csv_filename] [json_filename]")
-    csv_filename = args[0]
-    json_filename = args[1]
+    elif len(args) == 1:
+        print("No json filename given. Proceed with default filename 'data.json'?")
+        n = getYN()
+        if n == "n":
+            print("Terminating...")
+            return 0;
+        names = [args[0], "data.json"]
+    elif len(args) == 0:
+        print("No filenames given. Proceed with default filenames 'data.csv' and 'data.json'?")
+        n = getYN()
+        if n == "n":
+            print("Terminating...")
+            return 0;
+        names = ["data.csv", "data.json"]
+    else:
+        names = args
+    csv_filename = names[0]
+    json_filename = names[1]
 
     csv_file = open(csv_filename, "r")
     json_file = open(json_filename, "w")
@@ -24,6 +41,12 @@ def main():
     data = read_csv(csv_file)
     write_json(json_file, data)
     return 0
+
+def getYN():
+    n = input("[y/n] : ")
+    while n not in ["y", "Y", "N", "n"]:
+        n = input("[y/n] : ")
+    return n.lower()
 
 #file: the file to read from
 #returns a list of dictionary items

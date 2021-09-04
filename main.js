@@ -13,6 +13,8 @@ var asap = ["ljLn5QFnGyQ", 36, 72];
 var videos = [gods_menu, loser_lover, after_school, asap];
 var index = 0;
 
+var done = false;
+
 function onYouTubeIframeAPIReady(){
 	player = new YT.Player('player', {
 		height:'390',

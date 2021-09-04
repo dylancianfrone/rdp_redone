@@ -39,7 +39,7 @@ function onPlayerReady(event){
 
 function onPlayerStateChange(event){
 	if(event.data == YT.PlayerState.PLAYING && !done){
-		setTimeout(loadNextVideo, videos[index][2]-videos[index][1]);
+		setTimeout(loadNextVideo, 1000*(videos[index][2]-videos[index][1]));
 		done = true;
 	}
 }

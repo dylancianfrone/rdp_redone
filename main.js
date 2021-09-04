@@ -46,6 +46,6 @@ function onPlayerStateChange(event){
 
 function loadNextVideo(){
 	index += 1;
-	player.loadVideoById(videos[index][0]);
+	player.loadVideoById(videos[index][0], videos[index][1]);
 	done = false;
 }

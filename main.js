@@ -5,18 +5,20 @@ firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
 var player;
 
-var blank_video = ["XIMLoLxmTDw", 0, 0.5]
-var gods_menu = ["LhwQ5_NO2v0", 43, 82];
-var loser_lover = ["QMxqHzdjv0c", 39, 78];
-var after_school = ["7t9CHqg59h8", 35, 64];
-var asap = ["ljLn5QFnGyQ", 36, 72];
-
-var videos = [blank_video, gods_menu, loser_lover, after_school, asap];
-var index = 0;
-
+var blank_video = {
+		"title": "",
+		"artist": "",
+		"id": "XIMLoLxmTDw",
+		"start": 0,
+		"end": 0.5
+}
+var index = 0
 var done = false;
+songs = [blank_video]
+
 
 function onYouTubeIframeAPIReady(){
+	fetchSongData();
 	player = new YT.Player('player', {
 		height:'390',
 		width:'640',
@@ -42,26 +44,25 @@ function onPlayerReady(event){
 
 function onPlayerStateChange(event){
 	if(event.data == YT.PlayerState.PLAYING && !done){
-		setTimeout(loadNextVideo, 1000*(videos[index][2]-videos[index][1]));
+		setTimeout(loadNextVideo, 1000*(songs[index]['end']-songs[index]['start']));
 		done = true;
 	}
 }
 
 function loadNextVideo(){
+	console.log("Loading song "+index)
 	index += 1;
-	player.loadVideoById(videos[index][0], videos[index][1]);
+	player.loadVideoById(songs[index]['id'], songs[index]['start']);
 	done = false;
 }
 
-function start(){
-
+async function fetchSongData(){
   fetch('data.json').then(response => {
     return response.json();
   }).then(data => {
+		songs = songs.concat(data['songs']);
     console.log(data);
   }).catch(err => {
     console.log("ERROR")
   });
-
 }
-start();

@@ -24,8 +24,9 @@ function onYouTubeIframeAPIReady(){
 		videoId:'XIMLoLxmTDw',
 		playerVars:{
 			'playsinline':1,
-			'controls':0,
-			'modestbranding':1
+			'controls':1,
+			'modestbranding':1,
+			'origin': window.location.host
 		}
 		,
 		events: {
@@ -48,6 +49,10 @@ function onPlayerStateChange(event){
 	if(event.data == YT.PlayerState.PLAYING && index == 0){
 		setTimeout(loadNextVideo, 1000*(songs[index]['end']-songs[index]['start']));
 		done = true;
+		request = player.requestFullScreen;
+		if(request){
+			request.bind(iframe)();
+		}
 	}
 }
 

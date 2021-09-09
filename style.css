@@ -1,0 +1,54 @@
+:root{
+  --darkblue: #011638;
+  --charcoal: #364156;
+  --darkgray: #707070;
+  --lightgray:#CDCDCD;
+  --honeydew: #DFF8EB;
+  --green: 		#214E34;
+  --offwhite: #F5F5F5;
+  --offblack: #333333;
+}
+
+.menu{
+  position: fixed;
+  top:0;
+  padding: 1vh;
+  margin-bottom:10px;
+  width:100%;
+  height:10vh;
+  color: var(--offwhite);
+  background-color:var(--darkblue);
+}
+
+.menu a{
+  float: left;
+  color: var(--lightgray);
+  text-align: center;
+  padding: 1vw;
+  padding-right: 4vw;
+  text-decoration: none;
+}
+
+.menu a:hover{
+  color: var(--offwhite);
+}
+.wrapper{
+  padding-top:0;
+  margin-top: 14vh;
+  width:100%;
+}
+
+.left{
+  float:left;
+  margin:5%;
+  margin-right:2.5%;
+  background-color: var(--lightgray);
+}
+
+.right{
+  float:left;
+  height:100vh;
+  margin:5%;
+  margin-left:2.5%;
+  background-color: var(--lightgray);
+}

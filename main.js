@@ -14,7 +14,7 @@ var blank_video = {
 }
 var index = 0
 var done = false;
-songs = [blank_video]
+var songs = [blank_video]
 
 function onYouTubeIframeAPIReady(){
 	fetchSongData();
@@ -65,7 +65,7 @@ function loadNextVideo(){
 }
 
 async function fetchSongData(){
-  fetch('data.json').then(response => {
+	fetch('data.json').then(response => {
     return response.json();
   }).then(data => {
 		songs = songs.concat(shuffle(data['songs']));

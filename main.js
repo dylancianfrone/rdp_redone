@@ -12,10 +12,12 @@ var blank_video = {
 		"start": 0,
 		"end": 0.5
 }
+var d = new Date();
+var time_buffer = 1000;
 var index = 0
 var done = false;
 var songs = [blank_video]
-
+var time = 0
 function onYouTubeIframeAPIReady(){
 	fetchSongData();
 	player = new YT.Player('player', {
@@ -44,10 +46,11 @@ function onPlayerReady(event){
 
 function onPlayerStateChange(event){
 	if(event.data == YT.PlayerState.ENDED){
-		loadNextVideo();
+		console.log("Sending loadNextVideo() from index: "+index)
+		index = loadNextVideo(index);
 	}
 	if(event.data == YT.PlayerState.PLAYING && index == 0){
-		setTimeout(loadNextVideo, 1000*(songs[index]['end']-songs[index]['start']));
+		index = loadNextVideo(index);
 		done = true;
 		request = player.requestFullScreen;
 		if(request){
@@ -56,12 +59,23 @@ function onPlayerStateChange(event){
 	}
 }
 
-function loadNextVideo(){
-	console.log("Loading song "+index)
-	index += 1;
-	play = {'videoId': songs[index]['id'], 'startSeconds': songs[index]['start'], 'endSeconds': songs[index]['end']};
+function loadNextVideo(n){
+	curTime = Date.now()
+	console.log("CurTime: "+curTime+" time: "+time);
+	if(n != 1 && curTime - time < time_buffer){
+		return n;
+		console.log("Too fast. CurTime: "+curTime+" time: "+time);
+	}
+	time = curTime;
+	console.log("Loading song "+n);
+	play = {'videoId': songs[n]['id'], 'startSeconds': songs[n]['start'], 'endSeconds': songs[n]['end']};
 	player.loadVideoById(play);
 	done = false;
+	return n+1;
+}
+
+function manuallyLoadNextVideo(){
+	index = loadNextVideo(index);
 }
 
 async function fetchSongData(){

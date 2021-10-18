@@ -40,8 +40,8 @@ function onYouTubeIframeAPIReady(){
 
 function onPlayerReady(event){
 	console.log("ready");
-	event.target.playVideo();
-	console.log("video play sent");
+	//event.target.playVideo();
+	//console.log("video play sent");
 }
 
 function onPlayerStateChange(event){
